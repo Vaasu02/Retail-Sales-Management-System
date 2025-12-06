@@ -2,6 +2,8 @@ const Database = require('better-sqlite3');
 const fs = require('fs');
 const csv = require('csv-parser');
 const path = require('path');
+const { execSync } = require('child_process');
+const AdmZip = require('adm-zip');
 
 const dbPath = path.join(__dirname, '../../sales.db');
 const csvPath = path.join(__dirname, '../../truestate_assignment_dataset.csv'); // Adjust path based on root
@@ -82,6 +84,35 @@ function initDatabase() {
         });
         const rows = [];
         let rowCount = 0;
+
+        const csvFile = path.resolve(__dirname, '../../../truestate_assignment_dataset.csv');
+        const zipFile = path.resolve(__dirname, '../../../truestate_assignment_dataset.zip');
+
+        if (!fs.existsSync(csvFile)) {
+            if (fs.existsSync(zipFile)) {
+                console.log('CSV not found, attempting to extract from ZIP...');
+                try {
+                    console.log('Using native unzip...');
+                    execSync(`unzip -o "${zipFile}" -d "${path.dirname(csvFile)}"`);
+                    console.log('Native unzip complete.');
+                } catch (err) {
+                    console.log('Native unzip failed, falling back to adm-zip...');
+                    try {
+                        const zip = new AdmZip(zipFile);
+                        zip.extractAllTo(path.dirname(csvFile), true);
+                        console.log('adm-zip extraction complete.');
+                    } catch (zipErr) {
+                        console.error('Extraction failed:', zipErr);
+                        reject(zipErr);
+                        return;
+                    }
+                }
+            } else {
+                console.error(`CSV file not found at ${csvFile} and no ZIP found at ${zipFile}`);
+                resolve();
+                return;
+            }
+        }
 
         fs.createReadStream(csvFile)
             .pipe(csv())
