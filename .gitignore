@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Environment
+.env
+
+# Build outputs
+dist/
+build/
+
+# Database (Generated on run)
+*.db
+*.db-shm
+*.db-wal
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large Data (Ignore Raw CSV, Allow Zip)
+*.csv
+!truestate_assignment_dataset.zip
