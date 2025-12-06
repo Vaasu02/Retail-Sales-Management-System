@@ -20,7 +20,7 @@ export function useSales() {
                 // Note: The API is at localhost:5000/api/sales
                 // In production, this base URL would be in env
                 const queryString = searchParams.toString();
-                const response = await fetch(`http://localhost:5000/api/sales?${queryString}&includeMeta=true`);
+                const response = await fetch(`https://retail-sales-management-system-1.onrender.com/api/sales?${queryString}&includeMeta=true`);
 
                 if (!response.ok) {
                     throw new Error('Failed to fetch data');
