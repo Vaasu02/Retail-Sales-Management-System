@@ -80,32 +80,8 @@ function initDatabase() {
         const insertMany = db.transaction((rows) => {
             for (const row of rows) insert.run(row);
         });
-
         const rows = [];
         let rowCount = 0;
-
-        // Note: We need to point to the CSV file location correctly
-        // Assuming the user keeps the CSV in the root or same dir as backend
-        const AdmZip = require('adm-zip');
-
-        // ... (existing constants)
-
-        const csvFile = path.resolve(__dirname, '../../../truestate_assignment_dataset.csv');
-        const zipFile = path.resolve(__dirname, '../../../truestate_assignment_dataset.zip');
-
-        if (!fs.existsSync(csvFile)) {
-            if (fs.existsSync(zipFile)) {
-                console.log('CSV not found, extracting from ZIP...');
-                const zip = new AdmZip(zipFile);
-                zip.extractAllTo(path.dirname(csvFile), true);
-                console.log('Extraction complete.');
-            } else {
-                console.error(`CSV file not found at ${csvFile} and no ZIP found at ${zipFile}`);
-                // Fallback for development if file isn't there yet
-                resolve();
-                return;
-            }
-        }
 
         fs.createReadStream(csvFile)
             .pipe(csv())
