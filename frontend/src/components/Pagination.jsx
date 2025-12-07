@@ -10,7 +10,7 @@ export function Pagination({ meta }) {
             const newParams = new URLSearchParams(searchParams);
             newParams.set('page', newPage.toString());
             setSearchParams(newParams);
-            window.scrollTo(0, 0); // Scroll to top
+            window.scrollTo(0, 0);
         }
     };
 

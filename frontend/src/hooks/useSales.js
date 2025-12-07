@@ -8,7 +8,7 @@ export function useSales() {
     const [error, setError] = useState(null);
     const [filterOptions, setFilterOptions] = useState(null);
 
-    // We bind state to URL Search Params
+
     const [searchParams] = useSearchParams();
 
     useEffect(() => {
@@ -16,9 +16,6 @@ export function useSales() {
             setLoading(true);
             setError(null);
             try {
-                // Convert URLSearchParams to query string
-                // Note: The API is at localhost:5000/api/sales
-                // In production, this base URL would be in env
                 const queryString = searchParams.toString();
                 const response = await fetch(`https://retail-sales-management-system-1.onrender.com/api/sales?${queryString}&includeMeta=true`);
 

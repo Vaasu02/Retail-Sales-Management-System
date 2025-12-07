@@ -17,20 +17,18 @@ export function SalesTable({ data }) {
 
     const copyToClipboard = (text) => {
         navigator.clipboard.writeText(text);
-        // Could add toast here
     };
 
     if (!data.length) {
         return <div className="p-8 text-center text-brand-gray-text">No sales found matching your criteria.</div>;
     }
 
-    // Figma Style: #F3F3F3 Header, White Rows, Border separates
+
     return (
         <div className="overflow-x-auto border border-brand-border rounded-lg">
             <table className="min-w-full divide-y divide-brand-border">
                 <thead className="bg-[#F3F3F3]">
                     <tr>
-                        {/* Figma Order: Transaction ID, Date, Customer ID, Customer Name, Phone, Gender, Age, Product Category, Quantity, Total Amount, Region, Product ID, Employee Name */}
                         {[
                             'Transaction ID', 'Date', 'Customer ID', 'Customer Name', 'Phone',
                             'Gender', 'Age', 'Category', 'Qty', 'Amount', 'Payment',
@@ -58,7 +56,7 @@ export function SalesTable({ data }) {
                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-brand-black-text">
                                 {sale.customer_name}
                             </td>
-                            {/* Phone with Country Code and Copy */}
+
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-brand-black-text flex items-center gap-2">
                                 +91 {sale.phone}
                                 <button onClick={() => copyToClipboard(sale.phone)} className="text-gray-400 hover:text-gray-600" title="Copy Phone">

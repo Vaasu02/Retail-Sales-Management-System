@@ -10,7 +10,7 @@ function buildWhereClause(filters) {
     }
 
     if (filters.region && filters.region.length) {
-        // Multi-select for Region
+
         const regionPlaceholders = filters.region.map((_, i) => `@region${i}`).join(',');
         conditions.push(`region IN (${regionPlaceholders})`);
         filters.region.forEach((val, i) => params[`region${i}`] = val);
@@ -29,8 +29,6 @@ function buildWhereClause(filters) {
     }
 
     if (filters.tags && filters.tags.length) {
-        // Tags are stored as "Tag1, Tag2, Tag3". We need to check if the row contains ANY of the selected tags.
-        // Using OR logic for tags (Row has Tag A OR Tag B)
         const tagConditions = filters.tags.map((_, i) => `tags LIKE @tag${i}`).join(' OR ');
         conditions.push(`(${tagConditions})`);
         filters.tags.forEach((val, i) => params[`tag${i}`] = `%${val}%`);
@@ -74,14 +72,13 @@ const SalesModel = {
         const { where, params } = buildWhereClause(filters);
         const offset = (page - 1) * limit;
 
-        // Count Total (for pagination)
+
         const countQuery = `SELECT COUNT(*) as total FROM sales ${where}`;
         const totalResult = db.prepare(countQuery).get(params);
         const totalItems = totalResult ? totalResult.total : 0;
         const totalPages = Math.ceil(totalItems / limit);
 
-        // Fetch Data
-        // Whitelist sort fields to prevent SQL injection
+
         const allowedSortFields = ['date', 'quantity', 'customer_name', 'total_amount'];
         const sortField = allowedSortFields.includes(sort.field) ? sort.field : 'date';
         const sortOrder = sort.order.toUpperCase() === 'ASC' ? 'ASC' : 'DESC';
@@ -109,7 +106,7 @@ const SalesModel = {
     getFilterOptions: () => {
         const db = getDb();
         const tagsRaw = db.prepare('SELECT DISTINCT tags FROM sales WHERE tags IS NOT NULL').all().map(r => r.tags);
-        // Split comma-separated tags and get unique values
+
         const uniqueTags = [...new Set(tagsRaw.flatMap(t => t.split(',').map(tag => tag.trim())))].sort();
 
         return {

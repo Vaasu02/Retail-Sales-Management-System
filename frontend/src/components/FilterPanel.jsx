@@ -19,7 +19,7 @@ export function FilterPanel({ options }) {
         } else {
             newParams.delete(group);
         }
-        newParams.set('page', '1'); // Reset pagination
+        newParams.set('page', '1');
         setSearchParams(newParams);
     };
 
@@ -34,7 +34,7 @@ export function FilterPanel({ options }) {
         <div className="w-64 bg-white border-r border-brand-border h-screen overflow-y-auto p-4 flex-shrink-0 sticky top-0">
             <h2 className="text-xl font-bold mb-6 text-brand-black-text">Filters</h2>
 
-            {/* Region Filter */}
+
             <div className="mb-6">
                 <h3 className="text-sm font-semibold text-brand-gray-text uppercase tracking-wider mb-3">Region</h3>
                 <div className="space-y-2">
@@ -52,7 +52,7 @@ export function FilterPanel({ options }) {
                 </div>
             </div>
 
-            {/* Gender Filter */}
+
             <div className="mb-6">
                 <h3 className="text-sm font-semibold text-brand-gray-text uppercase tracking-wider mb-3">Gender</h3>
                 <div className="space-y-2">
@@ -70,7 +70,7 @@ export function FilterPanel({ options }) {
                 </div>
             </div>
 
-            {/* Age Range Filter */}
+
             <div className="mb-6">
                 <h3 className="text-sm font-semibold text-brand-gray-text uppercase tracking-wider mb-3">Age Range</h3>
                 <div className="flex gap-2">
@@ -101,7 +101,7 @@ export function FilterPanel({ options }) {
                 </div>
             </div>
 
-            {/* Date Range Filter */}
+
             <div className="mb-6">
                 <h3 className="text-sm font-semibold text-brand-gray-text uppercase tracking-wider mb-3">Date Range</h3>
                 <div className="space-y-2">
@@ -130,7 +130,7 @@ export function FilterPanel({ options }) {
                 </div>
             </div>
 
-            {/* Category Filter */}
+
             <div className="mb-6">
                 <h3 className="text-sm font-semibold text-brand-gray-text uppercase tracking-wider mb-3">Product Category</h3>
                 <div className="space-y-2">
@@ -148,7 +148,7 @@ export function FilterPanel({ options }) {
                 </div>
             </div>
 
-            {/* Tags Filter */}
+
             <div className="mb-6">
                 <h3 className="text-sm font-semibold text-brand-gray-text uppercase tracking-wider mb-3">Tags</h3>
                 <div className="space-y-2 max-h-40 overflow-y-auto">
@@ -166,7 +166,7 @@ export function FilterPanel({ options }) {
                 </div>
             </div>
 
-            {/* Payment Filter */}
+
             <div className="mb-6">
                 <h3 className="text-sm font-semibold text-brand-gray-text uppercase tracking-wider mb-3">Payment Method</h3>
                 <div className="space-y-2">

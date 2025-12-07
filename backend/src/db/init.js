@@ -6,13 +6,13 @@ const { execSync } = require('child_process');
 const AdmZip = require('adm-zip');
 
 const dbPath = path.join(__dirname, '../../sales.db');
-const csvPath = path.join(__dirname, '../../truestate_assignment_dataset.csv'); // Adjust path based on root
+const csvPath = path.join(__dirname, '../../truestate_assignment_dataset.csv');
 
 let db;
 
 function getDb() {
     if (!db) {
-        db = new Database(dbPath, { verbose: null }); // Disable verbose for bulk insert speed
+        db = new Database(dbPath, { verbose: null });
         db.pragma('journal_mode = WAL');
         db.pragma('synchronous = NORMAL');
     }
@@ -117,7 +117,7 @@ function initDatabase() {
         fs.createReadStream(csvFile)
             .pipe(csv())
             .on('data', (data) => {
-                // Map CSV headers to DB columns
+
                 const cleanRow = {
                     transaction_id: data['Transaction ID'],
                     date: data['Date'],
@@ -157,7 +157,7 @@ function initDatabase() {
             .on('end', () => {
                 if (rows.length > 0) insertMany(rows);
 
-                // Create Indexes for performance
+                // Indexes for performance
                 console.log('Creating Indexes...');
                 db.exec(`
                     CREATE INDEX IF NOT EXISTS idx_customer_name ON sales(customer_name);

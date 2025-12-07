@@ -22,21 +22,21 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-brand-gray-bg font-sans text-brand-black-text">
-      {/* Header */}
+
       <header className="bg-white border-b border-brand-border h-16 flex items-center px-6 sticky top-0 z-10">
         <h1 className="text-xl font-bold">Sales Management System</h1>
       </header>
 
       <main className="flex flex-1 overflow-hidden">
-        {/* Sidebar Filters */}
+
         <aside className="hidden md:block w-64 flex-shrink-0 z-0">
           <FilterPanel options={filterOptions} />
         </aside>
 
-        {/* Main Content */}
+
         <section className="flex-1 flex flex-col min-w-0 overflow-y-auto">
           <div className="p-6 space-y-6">
-            {/* Top Bar: Search and Sorting */}
+
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-4 rounded shadow-sm border border-brand-border">
               <SearchBar />
 
@@ -60,7 +60,7 @@ function App() {
               </div>
             </div>
 
-            {/* Data Table */}
+
             {loading ? (
               <div className="p-12 text-center text-gray-500">Loading sales data...</div>
             ) : error ? (

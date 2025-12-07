@@ -9,14 +9,14 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Initialize Database on Start
+
 initDatabase().then(() => {
     console.log('Database initialized successfully');
 }).catch(err => {
     console.error('Failed to initialize database:', err);
 });
 
-// Routes
+
 app.use('/api/sales', salesRoutes);
 
 app.get('/', (req, res) => {

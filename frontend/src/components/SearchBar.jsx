@@ -6,7 +6,7 @@ export function SearchBar() {
     const [searchParams, setSearchParams] = useSearchParams();
     const [term, setTerm] = useState(searchParams.get('q') || '');
 
-    // Debounce logic: update URL only after user stops typing
+
     useEffect(() => {
         const handler = setTimeout(() => {
             const current = searchParams.get('q') || '';
@@ -17,7 +17,7 @@ export function SearchBar() {
                 } else {
                     newParams.delete('q');
                 }
-                // Reset page to 1 on new search
+
                 newParams.set('page', '1');
                 setSearchParams(newParams);
             }
