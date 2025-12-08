@@ -3,6 +3,10 @@
 ## 1. Overview
 A full-stack sales management dashboard built with Node.js and React, designed to handle 1 million+ records efficiently. It features a responsive UI with real-time filtering, searching, and sorting capabilities backed by a high-performance SQLite database.
 
+<p align="center">
+	<img src="frontend/public/image.png" alt="App screenshot" width="800" />
+</p>
+
 ## 2. Tech Stack
 **Frontend**: React (Vite), Tailwind CSS, React Router, Lucide Icons.
 **Backend**: Node.js, Express.js, better-sqlite3 (SQLite).
